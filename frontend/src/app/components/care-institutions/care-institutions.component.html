@@ -1,0 +1,22 @@
+<div class="container">
+  <h3>Alle zorginstellingen</h3>
+  <div class="table-wrapper">
+    <div class="table-container">
+      <table class="table">
+        <thead>
+          <tr style="line-height: 60px; height: 60px;">
+            <th scope="col">#</th>
+            <th scope="col">naam</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let careinstitution of careInstitutions">
+            <td><a routerLink="{{ careinstitution.id }}">{{ careinstitution.id }}</a></td>
+            <td>{{ careinstitution.name }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

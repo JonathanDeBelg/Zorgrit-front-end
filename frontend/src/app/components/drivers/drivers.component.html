@@ -1,0 +1,35 @@
+<div class="container">
+    <h3>Alle chauffeurs</h3>
+
+    <div class="form-group ">
+        <a class="btn btn-primary" routerLink="new">+ Maak nieuw chauffeur aan</a>
+    </div>
+
+    <div class="table-wrapper">
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Naam</th>
+                    <th scope="col">E-mailadres</th>
+                    <th scope="col">Telefoonnummer</th>
+                    <th scope="col">Adres</th>
+                    <th scope="col">Geboortedatum</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let driver of drivers">
+                    <td><a routerLink="{{driver.id}}">{{ driver.id }}</a></td>
+                    <td><a routerLink="{{driver.id}}">{{ driver.firstName }} {{ driver.lastName }}</a></td>
+                    <td>{{ driver.email }}</td>
+                    <td>{{ driver.phoneNumber }}</td>
+                    <td>{{ driver.street }} {{ driver.houseNumber }}, {{ driver.zipCode }}</td>
+                    <td>{{ driver.dateOfBirth }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>

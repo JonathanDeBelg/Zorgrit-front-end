@@ -1,0 +1,40 @@
+<div class="container">
+    <h3>Gematchte ritten</h3>
+    <nav class="rides-nav">
+        <a routerLink="/rides">Alle ritten</a>
+        <br>
+        <a routerLink="/rides/not-matched">Niet Gematchte ritten</a>
+    </nav>
+    <div class="table-wrapper">
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Client</th>
+                    <th>Chauffeur</th>
+                    <th>Van</th>
+                    <th>Naar</th>
+                    <th>Status</th>
+                    <th>Datum, tijd</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let ride of ridesInformation.ridesInformation">
+                    <td><a routerLink="/ride/{{ride.id}}">{{ ride.id }}</a></td>
+                    <td>
+                        <a routerLink="/client/{{ride.clientDTO.clientId}}">{{ ride.clientDTO.firstName }} {{ ride.clientDTO.lastName }}</a>
+                    </td>
+                    <td>
+                        <a routerLink="/driver/{{ride.driverDTO.id}}">{{ ride.driverDTO.firstName }} {{ ride.driverDTO.lastName }}</a>
+                    </td>
+                    <td>{{ ride.pickUpLocation }}</td>
+                    <td>{{ ride.dropOffLocation }}</td>
+                    <td><span class="badge badge-success">Gematcht</span></td>
+                    <td>{{ ride.pickUpDateTime }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

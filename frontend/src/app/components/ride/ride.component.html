@@ -1,0 +1,26 @@
+<div *ngIf="ride" class="container">
+    <h1>Rit: {{ ride.id}}</h1>
+    <form class="client-form row">
+        <div class="column col-lg-6">
+            <div class="form-group ">
+                <label>Ophaal tijd</label>
+                <input class="form-control" readonly value="{{ ride.pickUpDateTime }}">
+            </div>
+
+            <div class="form-group ">
+                <label>Begin bestemming</label>
+                <input class="form-control" readonly value="{{ ride.pickUpLocation }}">
+            </div>
+
+            <div class="form-group ">
+                <label>Eind bestemming</label>
+                <input class="form-control" readonly value="{{ ride.dropOffLocation }}">
+            </div>
+
+            <div class="form-group ">
+                <label>Utility</label>
+                <input class="form-control" readonly value="{{ ride.utility }}">
+            </div>
+        </div>
+    </form>
+</div>

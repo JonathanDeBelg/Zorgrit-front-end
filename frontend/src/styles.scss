@@ -1,0 +1,46 @@
+/* You can add global styles to this file, and also import other style files */
+app-component {
+  .container {
+    margin-top: 50px;
+  }
+}
+
+header {
+  padding: 20px 0;
+
+  .header-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    a {
+      font-size: 20px;
+
+      &:not(:last-of-type) {
+        margin-right: 20px;
+        padding-right: 20px;
+        border-right: 2px solid #007bff;
+      }
+    }
+  }
+}
+
+.table-wrapper {
+  height: 500px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  overflow: hidden;
+
+  .table-container {
+    height: 500px;
+    overflow-y: scroll;
+    border-radius: 8px;
+  }
+}

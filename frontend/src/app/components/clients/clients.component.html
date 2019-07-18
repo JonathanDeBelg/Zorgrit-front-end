@@ -1,0 +1,35 @@
+<div class="container">
+    <h3>Alle clienten</h3>
+
+    <div class="form-group ">
+        <a class="btn btn-primary" routerLink="new">+ Maak nieuw cliënt aan</a>
+    </div>
+
+    <div class="table-wrapper">
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                <tr style="line-height: 60px; height: 60px;">
+                    <th scope="col">#</th>
+                    <th scope="col">Naam</th>
+                    <th scope="col">E-mailadres</th>
+                    <th scope="col">Telefoonnummer</th>
+                    <th scope="col">Adres</th>
+                    <th scope="col">Geboortedatum</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let client of clients">
+                    <td><a routerLink="{{ client.id }}">{{ client.id }}</a></td>
+                    <td><a routerLink="{{ client.id }}">{{ client.firstName }} {{client.lastName}}</a></td>
+                    <td>{{ client.email }}</td>
+                    <td>{{ client.phoneNumber }}</td>
+                    <td>{{ client.street }} {{ client.houseNumber }}, {{ client.zipCode }}</td>
+                    <td>{{ client.dateOfBirth }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>

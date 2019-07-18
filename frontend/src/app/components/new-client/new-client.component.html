@@ -1,0 +1,112 @@
+<div class="container">
+    <h1>Maak een nieuwe client aan</h1>
+    <form #newCLientForm="ngForm" (ngSubmit)="onSubmit()" [formGroup]="createClient" class="client-form row" validate>
+        <div class="column col-lg-6 col-sm-12">
+            <h4>Persoonlijke gegevens</h4>
+
+            <div class="form-row">
+                <div class="col-lg-4">
+                    <label>Voornaam</label>
+                    <input class="form-control" formControlName="firstName" required type="text">
+                </div>
+
+                <div class="col-lg-3">
+                    <label>Tussenvoegsels</label>
+                    <input class="form-control" formControlName="infix" required type="text">
+                </div>
+
+                <div class="col-lg-5">
+                    <label>Achternaam</label>
+                    <input class="form-control" formControlName="lastName" required type="text">
+                </div>
+            </div>
+
+            <div class="form-group ">
+                <label>Geboortedatum</label>
+                <input required type="text" class="form-control" formControlName="dateOfBirth" type="date">
+            </div>
+
+            <div class="form-group ">
+                <label>Companion</label>
+                <input required type="text" class="form-control" formControlName="companion">
+             </div>
+
+            <br>
+
+            <h4>Woongegevens</h4>
+            <div class="form-row">
+                <div class="col-lg-9">
+                    <label>Straat</label>
+                    <input class="form-control" formControlName="street" required type="text">
+                </div>
+
+                <div class="col-lg-3">
+                    <label>Huisnummer</label>
+                    <input class="form-control" formControlName="houseNumber" min="1" required type="string">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-lg-6">
+                    <label>Postcode</label>
+                    <input class="form-control" formControlName="zipCode" required type="text">
+                </div>
+
+                <div class="col-lg-6">
+                    <label>Woonplaats</label>
+                    <input class="form-control" formControlName="residence" required type="text">
+                </div>
+            </div>
+
+            <br>
+
+            <div class="form-group ">
+                <label>Voorkeurchauffeurs</label>
+                <select *ngIf="drivers" class="form-control" formControlName="drivers" multiple>
+                    <!-- <option value="" selected>Maak een keuze...</option> -->
+                    <option *ngFor="let driver of drivers" [value]="driver.id">
+                        {{ driver.firstName }} {{ driver.lastName }}</option>
+                </select>
+            </div>
+
+            <h4>Beperkingen</h4>
+            <div class="form-group ">
+                <label>Beperking: </label>
+                <select *ngIf="limitations" formControlName="limitation" class="form-control" multiple>
+                    <!-- <option value="" selected>Maak een keuze...</option> -->
+                    <option *ngFor="let limitation of limitations" [value]="limitation.name">
+                        {{ limitation.name }}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Mobiliteit: </label>
+                <select *ngIf="utilities" formControlName="utility" class="form-control">
+                    <!-- <option selected>Maak een keuze...</option> -->
+                    <option *ngFor="let utility of utilities" [value]="utility.name">{{ utility.name }}
+                    </option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="column col-lg-6 col-sm-12">
+            <h4>Conctactgegevens</h4>
+            <div class="form-group ">
+                <label>Email</label>
+                <input class="form-control" formControlName="email" required type="email">
+            </div>
+
+            <div class="form-group ">
+                <label>Telefoonnummer</label>
+                <input required type="text" class="form-control" formControlName="phoneNumber">
+            </div>
+        </div>
+        <div class="column col-lg-6 col-sm-12">
+            <div class="form-group ">
+                <button class="btn btn-primary" type="submit">Opslaan</button>
+                <a class="btn btn-danger" routerLink="/clients">x Annuleren</a>
+            </div>
+        </div>
+    </form>
+</div>

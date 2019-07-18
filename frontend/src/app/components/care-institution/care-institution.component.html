@@ -1,0 +1,15 @@
+<div *ngIf="careInstitution"  class="container">
+  <h1>Care Intitution {{ careInstitution.name }} </h1>
+  <form class="client-form row">
+    <div class="column col-lg-6">
+      <div class="form-group ">
+        <label>#</label>
+        <input class="form-control" readonly value="{{ careInstitution.id }}">
+      </div>
+      <div class="form-group ">
+        <label>Naam</label>
+        <input class="form-control" readonly value="{{ careInstitution.name }}">
+      </div>
+    </div>
+  </form>
+  <div>

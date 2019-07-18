@@ -1,0 +1,90 @@
+<div *ngIf="client" class="container">
+    <h1>Cliënt {{ client.firstName}} {{ client.lastName }}</h1>
+    <form (ngSubmit)="onSubmit()" [formGroup]="updateClient" class="client-form row">                    
+        <div class="column col-lg-6">
+            <div class="form-group">
+                <label>Voornaam</label>
+                <input [readOnly]="readOnly" class="form-control" formControlName="firstname">
+            </div>
+            <div class="form-group ">
+                <label>Achternaam</label>
+                <input [readOnly]="readOnly" class="form-control" formControlName="lastname">
+            </div>
+            <div class="form-group ">
+                <label>Begeleider</label>
+                <input [readOnly]="readOnly" class="form-control" formControlName="companion">
+            </div>
+            <div class="form-group">
+                <label>Beperking(en)</label>
+                <div *ngIf="readOnly">
+                    <input *ngFor="let limitation of client.limitations" class="form-control" readonly
+                           value="{{ limitation.name }}">
+                </div>
+                <select *ngIf="!readOnly" class="form-control" formControlName="limitations" multiple>
+                    <option *ngFor="let limitation of limitations" [value]="limitation">
+                        {{ limitation.name }}</option>
+                </select>
+            </div>
+            <div class="form-group" *ngIf="preferredDrivers">
+                <label>Voorkeur chauffeur(s)</label>
+                <div *ngIf="readOnly">
+                    <input *ngFor="let preferredDriver of preferredDrivers" class="form-control" readonly
+                           value="{{ preferredDriver.firstName }} {{ preferredDriver.lastName }}">
+                </div>
+                <select *ngIf="!readOnly" class="form-control" formControlName="preferredDrivers" multiple>
+                    <option *ngFor="let driver of drivers" [value]="driver">
+                        {{ driver.firstName }} {{ driver.lastName }}</option>
+                </select>
+            </div>
+            <div class="form-group ">
+                <label>Mobiliteit: </label>
+                <input *ngIf="readOnly" [readOnly]="readOnly" class="form-control" formControlName="utility">
+                <select *ngIf="!readOnly" class="form-control" formControlName="utility">
+                    <option *ngFor="let utility of utilities" [value]="utility.name">{{ utility.name }}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group ">
+                <label>Geboortedatum</label>
+                <input [readOnly]="readOnly" class="form-control" formControlName="dateOfBirth" type="date">
+            </div>
+            <input *ngIf="!readOnly" class="btn btn-primary" type="submit" value="Bewerk">
+            <a *ngIf="!readOnly" [href]="'clients/'+ client.id" class="button-verwijderen">x Annuleren</a>
+        </div>
+        <div class="column col-lg-6">
+            <div class="form-group ">
+                <label>Straat + huisnummer</label>
+                <div class="form-row">
+                    <div class="col-10">
+                        <input [readOnly]="readOnly" class="form-control" formControlName="street">
+                    </div>
+                    <div class="col-2">
+                        <input [readOnly]="readOnly" class="form-control" formControlName="houseNumber">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group ">
+                <label>Postcode</label>
+                <input [readOnly]="readOnly" class="form-control" formControlName="zipCode">
+            </div>
+            <div class="form-group ">
+                <label>Woonplaats</label>
+                <input [readOnly]="readOnly" class="form-control" formControlName="residence">
+            </div>
+            <div class="form-group ">
+                <label>Email</label>
+                <input [readOnly]="readOnly" class="form-control" formControlName="email" type="email">
+            </div>
+            <div class="form-group ">
+                <label>Telefoonnummer</label>
+                <input [readOnly]="readOnly" class="form-control" formControlName="phoneNumber" type="tel">
+            </div>
+        </div>
+    </form>
+    <button (click)="changeReadonlyToUpdate()" *ngIf="readOnly" class="btn btn-primary">Aanpassen</button>
+    <button (confirm)="deleteClient(client)" *ngIf="readOnly"
+            [popoverMessage]="popoverMessage"
+            [popoverTitle]="popoverTitle" class="button-verwijderen"
+            mwlConfirmationPopover placement="right">Verwijder deze cliënt
+    </button>
+</div>

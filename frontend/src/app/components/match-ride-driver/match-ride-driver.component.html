@@ -1,0 +1,26 @@
+<div class="container">
+  <h1 *ngIf="clientDTO">
+    Rit door client {{ ride.clientDTO.firstName }} {{ ride.clientDTO.lastName }}
+  </h1>
+  <h4>Tijd: {{ ride.pickUpDateTime }}</h4>
+  <h4>Van: {{ ride.pickUpLocation }}</h4>
+  <h4>Naar: {{ ride.dropOffLocation }}</h4>
+  <br>
+  <form #matchRideDriverForm="ngForm" (ngSubmit)="onSubmit()" [formGroup]="matchRideDriver" class="client-form row">
+    <div class="column col-lg-6 col-sm-12">
+      <div class="form-group ">
+        <label>Wijs een chauffeurs aan deze rit toe:</label>
+        <select *ngIf="preferredDrivers" class="form-control" formControlName="preferredDrivers">
+          <option *ngFor="let preferredDriver of preferredDrivers" [value]="preferredDriver.id">
+            {{ preferredDriver.firstName }} {{ preferredDriver.lastName }}</option>
+        </select>
+      </div>
+      <div class="column col-lg-6 col-sm-12">
+        <div class="form-group ">
+          <button class="btn btn-primary" type="submit">Opslaan</button>
+          <a class="btn btn-danger" routerLink="/rides"> Annuleren</a>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,46 @@
+<div class="container">
+    <h3>Alle ritten</h3>
+    <nav class="top-nav">
+        <a routerLink="/rides/matched">Gematchte ritten</a>
+        <br>
+        <a routerLink="/rides/not-matched">Niet Gematchte ritten</a>
+    </nav>
+
+    <div class="table-wrapper">
+        <div class="table-container">
+            <table *ngIf="ridesInformation" class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Client</th>
+                    <th>Chauffeur</th>
+                    <th>Van</th>
+                    <th>Naar</th>
+                    <th>Status</th>
+                    <th>Datum, tijd</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let ride of ridesInformation.ridesInformation">
+                    <td><a routerLink="/ride/{{ride.id}}">{{ ride.id }}</a></td>
+                    <td><a routerLink="/clients/{{ride.clientId}}">{{ ride.clientDTO.firstName }} {{ ride.clientDTO.lastName }}</a></td>
+                    <td *ngIf="ride.driverId; else noDriver"><a routerLink="/drivers/{{ride.driverId}}">{{ride.driverDTO.firstName}} {{ride.driverDTO.lastName}}</a></td>
+                    <ng-template #noDriver>
+                        <td><a routerLink="../matchride/{{ride.id}}">Chauffeur toewijzen</a></td>
+                    </ng-template>
+
+                    <td>{{ ride.pickUpLocation }}</td>
+                    <td>{{ ride.dropOffLocation }}</td>
+                    <td *ngIf="ride.driverId; else notMatched"><span class="badge badge-success">Gematcht</span></td>
+                    <ng-template #notMatched>
+                        <td><span class="badge badge-warning">In behandeling</span></td>
+                    </ng-template>
+                    <td>{{ ride.pickUpDateTime }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
